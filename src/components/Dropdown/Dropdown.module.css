@@ -115,3 +115,9 @@
   transform: translateY(-5px);
 
 }
+
+@media (max-width: 900px) {
+  .dropdown, .option {
+    width: 100%;
+  }
+}

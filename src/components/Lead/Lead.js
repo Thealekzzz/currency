@@ -8,6 +8,7 @@ import infoIcon from "./images/info.svg";
 import formatDate from '../../utils/formatDate';
 
 import { currenciesName } from '../../data/data';
+import useWindowDimensions from '../../hooks/useWindowDimensions';
 
 
 const Lead = ({ currencies, currencyTo, currencyFrom, setCurrencyFrom, setCurrencyTo }) => {
@@ -21,7 +22,7 @@ const Lead = ({ currencies, currencyTo, currencyFrom, setCurrencyFrom, setCurren
     if (currency === currencyTo)  {
       setCurrencyTo(currencyFrom);
     }
-    
+
     setCurrencyFrom(currency);
   }
 
@@ -39,6 +40,8 @@ const Lead = ({ currencies, currencyTo, currencyFrom, setCurrencyFrom, setCurren
   const [inputValue, setInputValue] = useState(10);
   const [convertedValue, setConvertedValue] = useState();
 
+  const {width} = useWindowDimensions();
+
   useEffect(() => {
     setConvertedValue((inputValue * currencies?.[currencyFrom]?.currencies[currencyTo] || 0));
   }, [currencies, inputValue, currencyFrom, currencyTo]);
@@ -49,7 +52,7 @@ const Lead = ({ currencies, currencyTo, currencyFrom, setCurrencyFrom, setCurren
         <input placeholder='Type your amount' type="text" className={styles.input} value={inputValue} onChange={handleInputChange} />
 
         <DropdownMenu options={Object.keys(currenciesName)} onSelect={handleCurrencyFromChange} selectedOption={currencyFrom} />
-        <img src={reverseIcon} onClick={handleReverseButtonClick} alt="Reverse currency, button" className={styles.reverseIcon} />
+        {width > 900 && <img src={reverseIcon} onClick={handleReverseButtonClick} alt="Reverse currency, button" className={styles.reverseIcon} />}
         <DropdownMenu options={Object.keys(currenciesName).filter(el => el !== currencyFrom)} onSelect={setCurrencyTo} selectedOption={currencyTo} />
 
       </div>

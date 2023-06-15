@@ -1,22 +1,18 @@
 import { useState, useEffect } from "react";
+import { colorByCurrency, token } from "./data/data.js";
+
 import styles from "./App.module.css";
+
 import Lead from "./components/Lead/Lead";
+import mixColor from "./utils/mixColor.js";
 
 function App() {
-  const token = "tTL31BwwZOqJzA7PXf7AfqCjJfFe5zDdMiY9Nn5N";
-
   const [currencyFrom, setCurrencyFrom] = useState("USD");
   const [currencyTo, setCurrencyTo] = useState("EUR");
 
+  const [colors, setColors] = useState({from: "#4926AD", to: "#4926AD"});
+
   const [currencies, setCurrencies] = useState(JSON.parse(localStorage.getItem("currencies")));
-  // { "USD": {
-  //    lastUpdate: 124241521, 
-  //    currencies: {
-  //      "EUR": 0.989, 
-  //      ...
-  //    }, 
-  //   ...
-  // }
 
 
   async function updateCurrenciesByBase(base) {
@@ -65,9 +61,23 @@ function App() {
 
   }, [currencyFrom, currencies]);
 
+  useEffect(() => {
+    setColors(prev => ({...prev, from: mixColor("#4926AD", colorByCurrency[currencyFrom])}));
+  }, [currencyFrom]);
+
+  useEffect(() => {
+    setColors(prev => ({...prev, to: mixColor("#4926AD", colorByCurrency[currencyTo])}));
+  }, [currencyTo]);
+
   return (
     <>
-      <div className={styles.header}></div>
+      <div 
+        className={styles.header}
+        style={{
+          backgroundImage: `linear-gradient(70deg, ${colors.from}, ${colors.to})`,
+          transition: "background-image 2s"
+        }}
+      ></div>
       <Lead currencies={currencies} currencyTo={currencyTo} currencyFrom={currencyFrom} setCurrencyFrom={setCurrencyFrom} setCurrencyTo={setCurrencyTo} />
       
     </>

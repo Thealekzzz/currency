@@ -7,6 +7,9 @@
   height: 300px;
 
   background-color: #4926AD;
+  /* background: linear-gradient(90deg, red, blue); */
 
   z-index: -1;
+
+  transition: background-image 2s;
 }

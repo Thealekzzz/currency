@@ -1,5 +1,6 @@
 .lead {
-  width: 800px;
+  box-sizing: border-box;
+  width: 860px;
 
   display: flex;
   flex-direction: column;

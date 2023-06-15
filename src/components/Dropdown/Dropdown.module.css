@@ -47,6 +47,7 @@
 
 .options {
   box-sizing: border-box;
+  z-index: 2;
   position: absolute;
 
   width: 220px;

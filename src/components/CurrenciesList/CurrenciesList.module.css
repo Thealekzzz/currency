@@ -1,0 +1,56 @@
+.sectionHeader {
+  padding: 0;
+  margin: 0;
+}
+
+.currenyListSection {
+  box-sizing: border-box;
+
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+
+  padding: 30px;
+  margin: 20px auto 80px;
+  background-color: white;
+  border-radius: 10px;
+
+  min-height: 60px;
+  width: 860px;
+
+  box-shadow: 0 0 50px rgba(0, 0, 0, .1);
+
+}
+
+.currenyList {
+  width: 100%;
+  
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+
+  list-style: none;
+  margin: 0;
+  padding: 0;
+
+}
+
+.currenyListItem {
+  display: flex;
+  gap: 10px;
+
+  margin: 0 10px;
+
+  position: relative;
+
+  font-size: 14px;
+
+  border-bottom: 1px solid #eee;
+}
+
+.currenyListItem > p {
+  font-size: 14px;
+}
+
+.currenyListItem > p > span {
+  font-weight: bold;
+}

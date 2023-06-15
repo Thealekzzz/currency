@@ -17,7 +17,15 @@ const Lead = ({ currencies, currencyTo, currencyFrom, setCurrencyFrom, setCurren
     }
   }
 
-  function handleReverseButtonClick(evt) {
+  function handleCurrencyFromChange(currency) {
+    if (currency === currencyTo)  {
+      setCurrencyTo(currencyFrom);
+    }
+    
+    setCurrencyFrom(currency);
+  }
+
+  function handleReverseButtonClick() {
     setTimeout(() => {
       const tempCurrency = currencyFrom;
       setCurrencyFrom(currencyTo);
@@ -40,7 +48,7 @@ const Lead = ({ currencies, currencyTo, currencyFrom, setCurrencyFrom, setCurren
       <div className={styles.top}>
         <input placeholder='Type your amount' type="text" className={styles.input} value={inputValue} onChange={handleInputChange} />
 
-        <DropdownMenu options={Object.keys(currenciesName)} onSelect={setCurrencyFrom} selectedOption={currencyFrom} />
+        <DropdownMenu options={Object.keys(currenciesName)} onSelect={handleCurrencyFromChange} selectedOption={currencyFrom} />
         <img src={reverseIcon} onClick={handleReverseButtonClick} alt="Reverse currency, button" className={styles.reverseIcon} />
         <DropdownMenu options={Object.keys(currenciesName).filter(el => el !== currencyFrom)} onSelect={setCurrencyTo} selectedOption={currencyTo} />
 
